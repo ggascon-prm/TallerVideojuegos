@@ -1,6 +1,7 @@
 package com.germangascon.tallervideojuegos.engine;
 
 import com.germangascon.tallervideojuegos.engine.interfaces.IEngine;
+import com.germangascon.tallervideojuegos.engine.scene.Scene;
 import com.germangascon.tallervideojuegos.engine.screen.Screen;
 
 import java.awt.*;
@@ -12,11 +13,13 @@ public class Engine implements IEngine, Runnable {
     private int width;
     private int height;
     private boolean running;
+    private Scene scene;
 
-    public Engine(String title, int width, int height) {
+    public Engine(String title, int width, int height, Scene scene) {
         this.width = width;
         this.height = height;
         screen = new Screen(title, width, height);
+        this.scene = scene;
         start();
     }
 
@@ -60,5 +63,13 @@ public class Engine implements IEngine, Runnable {
     @Override
     public void renderUI() {
 
+    }
+
+    private void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
+    public Scene getScene() {
+        return scene;
     }
 }
