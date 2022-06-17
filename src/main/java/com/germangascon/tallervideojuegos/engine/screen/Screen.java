@@ -25,6 +25,8 @@ public class Screen {
 
         frame.add(canvas);
         frame.pack();
+        this.width = width;
+        this.height = height;
     }
 
     public static void showOnDisplay(int display, JFrame frame) {

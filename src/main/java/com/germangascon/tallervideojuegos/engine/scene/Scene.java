@@ -4,12 +4,13 @@ import com.germangascon.tallervideojuegos.engine.entities.Entity;
 import com.germangascon.tallervideojuegos.engine.interfaces.IEngine;
 import com.germangascon.tallervideojuegos.engine.world.World;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 
 public abstract class Scene implements IEngine {
-    private final World world;
-    private final ArrayList<Entity> entities;
+    protected final World world;
+    protected final ArrayList<Entity> entities;
 
     public Scene(World world, int minEntities) {
         this.world = world;
@@ -17,23 +18,27 @@ public abstract class Scene implements IEngine {
     }
 
     @Override
-    public void update() {
-        world.update();
+    public void update(double deltaTime) {
+        world.update(deltaTime);
         for(Entity e: entities)
-            e.update();
+            e.update(deltaTime);
     }
 
     @Override
-    public void render() {
-        world.render();
+    public void render(Graphics g) {
+        world.render(g);
         for(Entity e: entities)
-            e.render();
+            e.render(g);
     }
 
     @Override
-    public void renderUI() {
-        world.renderUI();
+    public void renderUI(Graphics g) {
+        world.renderUI(g);
         for(Entity e: entities)
-            e.renderUI();
+            e.renderUI(g);
+    }
+
+    public ArrayList<Entity> getEntities() {
+        return entities;
     }
 }
